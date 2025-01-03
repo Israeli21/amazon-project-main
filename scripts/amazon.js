@@ -3,6 +3,7 @@
 // two dots (..) used to access a file RIGHT OUTSIDE the current file (amazon.js)
 import {cart} from '../data/cart.js';
 import {products} from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 let productsHTML = '';
 
@@ -27,7 +28,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -65,7 +66,8 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 // The reason we use an object is because each product will have its own timeoutId. So an object lets us save multiple timeout ids for different products
 const addedMessageTimeouts = {};
 
-// function addToCart(productId); Copy + Paste into cart.js / export the function, then import into this page import {cart, addToCart} from '../data/cart.js';
+// Copy + Paste into cart.js / export the function, then import into this page import {cart, addToCart} from '../data/cart.js';
+// function addToCart(productId)
 // function updateCartQuantity();
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
@@ -116,9 +118,6 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
     // Save the timeoutId for this product so we can stop it later if we need to
     addedMessageTimeouts[productId] = timeoutId;
-
-    console.log(cartQuantity);
-    console.log(cart);
   });
 });
 
