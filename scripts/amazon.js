@@ -1,3 +1,9 @@
+// All imports needs to be at the top of the file
+// NEEDS to use Live Server
+// two dots (..) used to access a file RIGHT OUTSIDE the current file (amazon.js)
+import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
+
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -59,15 +65,18 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 // The reason we use an object is because each product will have its own timeoutId. So an object lets us save multiple timeout ids for different products
 const addedMessageTimeouts = {};
 
+// function addToCart(productId); Copy + Paste into cart.js / export the function, then import into this page import {cart, addToCart} from '../data/cart.js';
+// function updateCartQuantity();
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
 
     let matchingItem;
 
-    cart.forEach((item) => {
-      if(productId === item.productId){
-        matchingItem = item;
+    cart.forEach((cartItem) => {
+      if(productId === cartItem.productId){
+        matchingItem = cartItem;
       }
     });
 
@@ -87,8 +96,8 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
     let cartQuantity = 0;
 
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
     });
 
     document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
