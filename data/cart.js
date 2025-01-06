@@ -1,4 +1,6 @@
 // Normalizing the Data (deduplicating): removing dupilcate values from a data structure
+// To RESET cart items to original items. In the console you type:
+// localStorage.removeItem('cart')
 export let cart = JSON.parse(localStorage.getItem('cart'));
 if (!cart) {
   cart = [{
@@ -54,6 +56,20 @@ export function removeFromCart(productId) {
   });
 
   cart = newCart;
+
+  saveToStorage();
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
 }

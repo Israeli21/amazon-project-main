@@ -1,10 +1,11 @@
 // Named Exports: Syntax with curly brackets
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, updateDeliveryOption} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 // Default Export: another way of exporting. We can use it when we only want to export 1 thing
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions} from '../data/deliveryOptions.js';
+// 14:34:16
 
 const today = dayjs();
 const deliveryDate = today.add(7, 'days');
@@ -98,9 +99,10 @@ function deliveryOptionsHTML(matchingProduct, cartItem){
       : `$${formatCurrency(deliveryOption.priceCents)} -`;
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
-    html +=
-    `
-    <div class = "delivery-option">
+    html += `
+    <div class = "delivery-option js-delivery-option"
+      data-product-id = "${matchingProduct.id}"
+      data-delivery-option-id = "${deliveryOption.id}">
       <input type = "radio"
         ${isChecked ? 'checked' : ''}
         class = "delivery-option-input"
@@ -134,6 +136,13 @@ document.querySelectorAll('.js-delete-link')
       );
       container.remove();
     });
+});
+
+document.querySelectorAll('.js-delivery-option').forEach((element) => {
+  element.addEventListener('click', () => {
+    const {productId, deliveryOptionId} = element.dataset;
+    updateDeliveryOption(productId, deliveryOptionId);
+  });
 });
 
 // External Libraries: code that is outside of our project
