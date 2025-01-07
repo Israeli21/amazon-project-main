@@ -1,3 +1,7 @@
+// Make payment summary interactive
+// Saved data and generated HTML for payment summary
 import {renderOrderSummary} from './checkout/orderSummary.js';
+import { renderPaymentSummary } from './checkout/paymentSummary.js';
 
 renderOrderSummary();
+renderPaymentSummary();
