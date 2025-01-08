@@ -38,3 +38,4 @@ describe('test suite: addToCart', () => {
 
 // Flaky Test: test that sometimes passes and sometimes fails
 // Mocks: lets us replace a method with a fake version
+// Integration Test: tests many units/pieces of code working together
