@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- In Jasmine: spec = test; This file runs ALL the tests -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -13,16 +14,17 @@
   <!-- optional: include a file here that configures the Jasmine env -->
   <script src="lib/jasmine-5.1.1/boot1.js"></script>
 
-  <!-- include source files here... -->
-  <script src="src/Player.js"></script>
-  <script src="src/Song.js"></script>
-
-  <!-- include spec files here... -->
-  <script src="spec/SpecHelper.js"></script>
-  <script src="spec/PlayerSpec.js"></script>
+  <script src = "moneyTest.js" type = "module"></script>
 
 </head>
 
 <body>
 </body>
 </html>
+
+<!-- 
+Jasmine: testing framework (external library that helps us write tests easier)
+  1) Create test suite
+  2) Create tests
+  3) Compares values and displays results
+-->
