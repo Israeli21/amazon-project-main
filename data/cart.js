@@ -6,7 +6,6 @@ export let cart;
 loadFromStorage();
 export function loadFromStorage(){
   cart = JSON.parse(localStorage.getItem('cart'));
-  getItem('cart');
   
   if (!cart) {
     cart = [{
@@ -80,3 +79,6 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
   saveToStorage();
 }
+
+// Procedural Programming: Procedure (a set of step-by-step instructions)
+// Object-Oriented Programming: Orgaanize code into objects
