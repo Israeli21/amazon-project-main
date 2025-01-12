@@ -1,3 +1,4 @@
+// Stopped: 19:02:47
 import {formatCurrency} from '../scripts/utils/money.js';
 export function getProduct(productId){
   let matchingProduct;
@@ -32,6 +33,29 @@ class Product {
 
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
+  }
+
+  extraInfoHTML(){
+    return '';
+  }
+}
+
+// One class is a more specific type of another class
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails){
+    super(productDetails);  // super: Calls the constructor of the parent class
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML(){
+    // super.extraInfoHTML();
+    return `
+      <a href = "${this.sizeChartLink}" target = "_blank">
+        Size Chart
+      </a>
+    `;
   }
 }
 
@@ -79,7 +103,7 @@ export const products = [
       "apparel",
       "mens"
     ],
-    type: "clothing",
+    type: "clothing",   // Discriminator Property
     sizeChartLink: "images/clothing-size-chart.png"
   },
   {
@@ -695,6 +719,9 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });
 
