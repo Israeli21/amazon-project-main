@@ -59,6 +59,13 @@ class Clothing extends Product {
   }
 }
 
+// const date = new Date();
+// console.log(date);
+// console.log(date.toLocaleString());
+
+// There's no object for 'this' to point to, so it will equal 'undefined'
+// console.log(this);
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -726,3 +733,4 @@ export const products = [
 });
 
 // .map(): Loops through an array, for each value it runs a function
+// new Date(): generates an object that represents the current date
