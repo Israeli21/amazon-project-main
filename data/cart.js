@@ -1,6 +1,7 @@
 // Normalizing the Data (deduplicating): removing dupilcate values from a data structure
 // To RESET cart items to original items. In the console you type:
 // localStorage.removeItem('cart')
+// 20:56:30
 export let cart;
 
 loadFromStorage();
@@ -82,3 +83,14 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
 // Procedural Programming: Procedure (a set of step-by-step instructions)
 // Object-Oriented Programming: Orgaanize code into objects
+export function loadCart(fun) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response);
+    fun();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
+}
