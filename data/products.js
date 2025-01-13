@@ -1,4 +1,4 @@
-// Stopped: 20:10:00
+// Stopped: 21:08:38
 import {formatCurrency} from '../scripts/utils/money.js';
 export function getProduct(productId){
   let matchingProduct;
@@ -68,8 +68,30 @@ class Clothing extends Product {
 
 export let products = [];
 
+export function loadProductsFetch() {
+  const promise = fetch(
+    'https://supersimplebackend.dev/products'
+  ).then((response) => {
+    return response.json();  // asynchronous code: should contain the products data
+  }).then((productsData) => {
+    products = productsData.map((productDetails) => {
+      if (productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+    console.log('load products');
+  });
+
+  return promise;
+}
+
+// loadProductsFetch().then(() => {
+//   console.log('next step');
+// });
+
 export function loadProducts(fun) {
-  const xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();  // Makes requests to the backend
 
   xhr.addEventListener('load', () => {
     products = JSON.parse(xhr.response).map((productDetails) => {
@@ -756,3 +778,4 @@ export const products = [
 
 // .map(): Loops through an array, for each value it runs a function
 // new Date(): generates an object that represents the current date
+// fetch(): better way to make HTTP requests
