@@ -6,8 +6,24 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 import {loadCart} from '../data/cart.js';
 // import '../data/cart-class.js';
 // import '../data/backend-practice.js';
+// Stopped: 21:22:47
 
 // Promise: is an object that represents the eventual completion of an asynchronous operation and its resulting value
+async function loadPage() {     // async: makes a function return a promise
+
+    await loadProductsFetch();  // await: lets us write asynchronous code like normal code
+    
+    const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value3');
+        });
+    });
+    renderOrderSummary();
+    renderPaymentSummary();
+}
+loadPage();
+
+/*
 Promise.all([
     loadProductsFetch(),
     new Promise((resolve) => {
@@ -20,6 +36,7 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary();
 });
+*/
 
 // new Promise((resolve) => {
 //     loadProducts(() => {
@@ -47,3 +64,5 @@ Promise.all([
 // });
 
 // Multiple callbacks cause a lot of nesting, promises are recommended because they keep our code flat
+// Async Await: even better way to handle asynchronous code
+// Await: lets us wait for a promise to finish, before going to the next line
