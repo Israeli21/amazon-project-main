@@ -1,4 +1,4 @@
-// Stopped: 21:08:38
+// Stopped: 21:42:33
 import {formatCurrency} from '../scripts/utils/money.js';
 export function getProduct(productId){
   let matchingProduct;
