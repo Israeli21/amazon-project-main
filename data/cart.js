@@ -1,7 +1,6 @@
 // Normalizing the Data (deduplicating): removing dupilcate values from a data structure
 // To RESET cart items to original items. In the console you type:
 // localStorage.removeItem('cart')
-// 20:56:30
 export let cart;
 
 loadFromStorage();

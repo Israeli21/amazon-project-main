@@ -1,4 +1,3 @@
-// Stopped: 20:02:00
 const xhr = new XMLHttpRequest();
 xhr.addEventListener('load', () => {
     console.log(xhr.response);

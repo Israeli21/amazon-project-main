@@ -6,7 +6,6 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 import {loadCart} from '../data/cart.js';
 // import '../data/cart-class.js';
 // import '../data/backend-practice.js';
-// Stopped: 21:22:47
 
 // Promise: is an object that represents the eventual completion of an asynchronous operation and its resulting value
 async function loadPage() {     // async: makes a function return a promise
