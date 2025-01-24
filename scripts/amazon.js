@@ -69,16 +69,7 @@ function renderProductsGrid() {
   // The reason we use an object is because each product will have its own timeoutId. So an object lets us save multiple timeout ids for different products
   const addedMessageTimeouts = {};
 
-  function updateCartQuantity() {
-    let cartQuantity = 0;
-
-    cart.forEach((cartItem) => {
-      cartQuantity += cartItem.quantity;
-    });
-
-    document.querySelector('.js-cart-quantity')
-      .innerHTML = cartQuantity;
-  }
+  updateCartQuantity();
 
   document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
@@ -105,6 +96,17 @@ function renderProductsGrid() {
       addedMessageTimeouts[productId] = timeoutId;
       });
     });
+}
+
+function updateCartQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
 }
 
 // // Data Attribute: another HTML attribute, that allows us to attach any information to any element
