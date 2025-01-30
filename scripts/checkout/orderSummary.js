@@ -1,5 +1,5 @@
 // Named Exports: Syntax with curly brackets
-import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js';
+import {cart, removeFromCart, updateDeliveryOption, updateQuantity} from '../../data/cart.js';
 import {products, getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 // Default Export: another way of exporting. We can use it when we only want to export 1 thing
@@ -57,7 +57,8 @@ export function renderOrderSummary(){
               <input class="quantity-input js-quantity-input-${matchingProduct.id}">
               <span class = "save-quantity-link link-primary js-save-link"
                 data-product-id="${matchingProduct.id}">
-                Save</span>
+                Save
+              </span>
               <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                 Delete
               </span>
@@ -170,6 +171,7 @@ export function renderOrderSummary(){
         `.js-quantity-input-${productId}`
       );
       const newQuantity = Number(quantityInput.value);
+      updateCartQuantity(productId, newQuantity);
     });
   });
 
